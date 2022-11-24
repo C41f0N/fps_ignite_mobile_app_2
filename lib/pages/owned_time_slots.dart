@@ -18,15 +18,15 @@ class OwnedTimeSlots extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          tvc_set_name + "(Owned)",
+          "${tvc_set_name.replaceAll('_', ' ')}(Owned)",
         ),
       ),
 
       body: StreamBuilder(
         stream: FirebaseFirestore.instance.collection('tvc_sets')
-        .doc("Green Screen Room")
-        .collection("Group ${del_group}")
-        .where("Owned By", isEqualTo: getDelID()!)
+        .doc(tvc_set_name)
+        .collection("Group_${del_group}")
+        .where("Owned_By", isEqualTo: getDelID()!)
         .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
@@ -42,6 +42,7 @@ class OwnedTimeSlots extends StatelessWidget {
                       child: Text(
                         doc.id,
                         style: TextStyle(
+                          color: Colors.white,
                           fontSize: 20,
                           fontWeight: FontWeight.w500
                         ),

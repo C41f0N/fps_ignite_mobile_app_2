@@ -65,17 +65,18 @@ class _DelegationLoginPageState extends State<DelegationLoginPage> {
                       errorBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                           color: Colors.red,
+                          width: 3
                         )
                       ),
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        width: 2,
+                        width: 3,
                         color: Theme.of(context).colorScheme.primary,
                       )
                     ),
                     enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      width: 2,
+                      width: 3,
                       color: Theme.of(context).colorScheme.primary,
                       ),
                     ),
@@ -98,19 +99,19 @@ class _DelegationLoginPageState extends State<DelegationLoginPage> {
                     errorText: _PasswordError,
                     errorBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        width: 2,
+                        width: 3,
                         color: Colors.red,
                       )
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        width: 2,
+                        width: 3,
                         color: Theme.of(context).colorScheme.primary,
                       )
                     ),
                     enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      width: 2,
+                      width: 3,
                       color: Theme.of(context).colorScheme.primary,
                       ),
                     ),

@@ -38,14 +38,13 @@ class _TVCSetsState extends State<TVCSets> {
                   child: ElevatedButton(
                     onPressed: () async {
                       String? delGroup = await getDelGroup(getDelID()!);
-                      print("Got Del Group: '$delGroup'");
                       Navigator.of(context).push(MaterialPageRoute(builder: (context) => TimeSlots(tvc_set_name: doc.id, del_group: delGroup!,)));
                     },
                     child: Container(
                       height: 70,
                       child: Center(
                         child: Text(
-                          doc.id,
+                          doc.id.replaceAll('_', " "),
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w500

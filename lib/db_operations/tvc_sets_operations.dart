@@ -8,18 +8,18 @@ Future<bool> BuyTVCSlot(tvcSetName, tvcSlotTime, delGroup) async {
   var fetchedSlotDoc = await FirebaseFirestore.instance
   .collection('tvc_sets')
   .doc(tvcSetName)
-  .collection("Group ${delGroup}")
+  .collection("Group_${delGroup}")
   .doc(tvcSlotTime)
   .get();
 
-  var cost = fetchedSlotDoc["Cost"];
+  var cost = fetchedSlotDoc["Amount"];
   
   var ICs;
 
   // Get ICs
   await FirebaseFirestore.instance
   .collection('delegations')
-  .where('Delegation ID', isEqualTo: getDelID())
+  .where('Delegation_ID', isEqualTo: getDelID())
   .get()
   .then((value) {
     value.docs.forEach((docs) {
@@ -42,15 +42,15 @@ Future<bool> BuyTVCSlot(tvcSetName, tvcSlotTime, delGroup) async {
     await FirebaseFirestore.instance
     .collection('tvc_sets')
     .doc(tvcSetName)
-    .collection("Group ${delGroup}")
+    .collection("Group_${delGroup}")
     .doc(tvcSlotTime)
     .update({
-      'Owned By': getDelID()
+      'Owned_By': getDelID()
     });
 
     // Add the transaction
     await addTransaction(
-      "Bought ${tvcSetName}",
+      "Bought ${tvcSetName.replaceAll("_"," ")}",
       -cost,
     );
 
@@ -70,7 +70,7 @@ Future<void> addTransaction(String transactionDescription, int amountChange) asy
   // Fetch the delegate data
   var delegationDoc = await FirebaseFirestore.instance
   .collection('delegations')
-  .where('Delegation ID', isEqualTo: getDelID())
+  .where('Delegation_ID', isEqualTo: getDelID())
   .limit(1)
   .get();
 
@@ -94,7 +94,7 @@ Future<void> addTransaction(String transactionDescription, int amountChange) asy
   .doc()
   .set({
     'Amount': amountChange,
-    'Delegation ID': getDelID(),
+    'Delegation_ID': getDelID(),
     'Description': transactionDescription,
     "Time": DateTime.now(),
   });

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fps_ignite_mobile_app_2/db_operations/authentication.dart';
+import 'package:fps_ignite_mobile_app_2/db_operations/permission_switch_checker.dart';
 
 class ICs_Tracker extends StatefulWidget {
   const ICs_Tracker({super.key});
@@ -59,7 +60,7 @@ class _ICs_TrackerState extends State<ICs_Tracker> {
             },
             child: Icon(
               Icons.logout,
-              color: Colors.black,
+              color: Colors.white,
               size: 20,
             ),
           ),
@@ -87,7 +88,7 @@ class _ICs_TrackerState extends State<ICs_Tracker> {
                 StreamBuilder<QuerySnapshot>(
                   stream: FirebaseFirestore.instance.collection(
                     'delegations')
-                    .where("Delegation ID", isEqualTo: getDelID())
+                    .where("Delegation_ID", isEqualTo: getDelID())
                     .limit(1)
                     .snapshots(),
                   builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -137,7 +138,7 @@ class _ICs_TrackerState extends State<ICs_Tracker> {
               child: StreamBuilder(
                 stream: FirebaseFirestore.instance.collection(
                   "transactions")
-                  .where("Delegation ID", isEqualTo: getDelID())
+                  .where("Delegation_ID", isEqualTo: getDelID())
                   .orderBy("Time", descending: true)
                   .limit(10)
                   .snapshots(),
@@ -154,7 +155,10 @@ class _ICs_TrackerState extends State<ICs_Tracker> {
                             width: 300,
                             child: Center(
                               child: Text(
-                                doc["Amount"].toString() + ": " + doc["Description"]
+                                doc["Amount"].toString() + ": " + doc["Description"],
+                                style: TextStyle(
+                                  color: Colors.grey[200],
+                                ),
                               ),
                             ),
                           ),
@@ -176,8 +180,8 @@ class _ICs_TrackerState extends State<ICs_Tracker> {
             ),
             ElevatedButton(
               child: Text("Buy TV Set Slots"),
-              onPressed: () {
-                Navigator.pushNamed(context, '/tvc_sets');
+              onPressed: () async {
+                  Navigator.pushNamed(context, '/tvc_sets');
               },
             ),
             SizedBox(

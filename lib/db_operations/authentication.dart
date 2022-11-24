@@ -7,7 +7,7 @@ Future<bool> delegationIdExists(String? delID) async {
   bool exists = false;
   await FirebaseFirestore.instance
   .collection('delegations')
-  .where('Delegation ID', isEqualTo: delID)
+  .where('Delegation_ID', isEqualTo: delID)
   .get()
   .then((value) {
     value.docs.forEach((docs) {
@@ -23,7 +23,7 @@ Future<bool> verifyPassword(String? delID, String? password) async {
   bool valid = false;
   await FirebaseFirestore.instance
   .collection('delegations')
-  .where('Delegation ID', isEqualTo: delID)
+  .where('Delegation_ID', isEqualTo: delID)
   .get()
   .then((value) {
     value.docs.forEach((docs) {
@@ -57,7 +57,7 @@ Future<String> getDelGroup(String delID) async {
   var delGroup;
   await FirebaseFirestore.instance
   .collection("delegations")
-  .where('Delegation ID', isEqualTo: delID)
+  .where('Delegation_ID', isEqualTo: delID)
   .get()
   .then((value) {
     value.docs.forEach((docs) {
