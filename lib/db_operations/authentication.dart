@@ -38,7 +38,7 @@ Future<bool> verifyPassword(String? delID, String? password) async {
   return valid;
 }
 
-void Login(String delID) {
+Future<void> Login(String delID) async {
   var _myBox = Hive.box('IGNITE_APP_DATABASE');
   _myBox.put('LOGGED_IN_DEL_ID', delID);
 }
@@ -54,16 +54,17 @@ String? getDelID() {
 }
 
 Future<String> getDelGroup(String delID) async {
+  var delGroup;
   await FirebaseFirestore.instance
-  .collection('delegations')
+  .collection("delegations")
   .where('Delegation ID', isEqualTo: delID)
   .get()
   .then((value) {
     value.docs.forEach((docs) {
       if (docs.exists) {
-        return docs["Group"];
+        delGroup = docs["Group"];
       }
     });
   });
-  return '';
+  return delGroup!;
 }

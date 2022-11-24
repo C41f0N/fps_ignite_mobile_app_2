@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fps_ignite_mobile_app_2/db_operations/authentication.dart';
+import 'package:fps_ignite_mobile_app_2/pages/owned_time_slots.dart';
 import 'package:fps_ignite_mobile_app_2/pages/time_slots.dart';
 import 'package:fps_ignite_mobile_app_2/pages/tvc_sets.dart';
 import 'package:fps_ignite_mobile_app_2/pages/ic_balance.dart';
@@ -23,18 +25,28 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String initialPageRoute = '/login';
+    if (getDelID() != null) {
+      initialPageRoute = '/ics_tracker';
+    } else {
+      initialPageRoute = '/login';
+    }
+
     return MaterialApp(
       title: 'Ignite App',
       theme: ThemeData(
         primarySwatch: Colors.yellow,
         scaffoldBackgroundColor: Colors.grey[900]
       ),
-      initialRoute: '/login',
+
+
+      initialRoute: initialPageRoute,
       routes: <String, WidgetBuilder> {
         '/ics_tracker':(context) => ICs_Tracker(),
         '/login':(context) => DelegationLoginPage(),
         '/tvc_sets':(context) => TVCSets(),
-        '/buy_slots':(context) => TimeSlots(tvc_set_name: '',),
+        '/buy_slots':(context) => TimeSlots(tvc_set_name: '', del_group: '',),
+        '/owned_slots':(context) => OwnedTimeSlots(tvc_set_name: '', del_group: '',),
       },
     );
   }
