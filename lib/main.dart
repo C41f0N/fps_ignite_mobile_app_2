@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fps_ignite_mobile_app_2/pages/time_slots.dart';
+import 'package:fps_ignite_mobile_app_2/pages/tvc_sets.dart';
 import 'package:fps_ignite_mobile_app_2/pages/ic_balance.dart';
 import 'package:fps_ignite_mobile_app_2/pages/login.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -31,6 +33,8 @@ class MyApp extends StatelessWidget {
       routes: <String, WidgetBuilder> {
         '/ics_tracker':(context) => ICs_Tracker(),
         '/login':(context) => DelegationLoginPage(),
+        '/tvc_sets':(context) => TVCSets(),
+        '/buy_slots':(context) => TimeSlots(tvc_set_name: '',),
       },
     );
   }

@@ -149,12 +149,12 @@ class _ICs_TrackerState extends State<ICs_Tracker> {
                          return Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Container(
-                            color: Colors.grey[200],
+                            color: Theme.of(context).primaryColor,
                             height: 70,
                             width: 300,
                             child: Center(
                               child: Text(
-                                doc["Amount"] + ": " + doc["Description"]
+                                doc["Amount"].toString() + ": " + doc["Description"]
                               ),
                             ),
                           ),
@@ -172,8 +172,17 @@ class _ICs_TrackerState extends State<ICs_Tracker> {
               ),
             ),
             SizedBox(
-              height: 100,
-            )
+              height: 25,
+            ),
+            ElevatedButton(
+              child: Text("Buy TV Set Slots"),
+              onPressed: () {
+                Navigator.pushNamed(context, '/tvc_sets');
+              },
+            ),
+            SizedBox(
+              height: 50,
+            ),
           ]
 
         ),

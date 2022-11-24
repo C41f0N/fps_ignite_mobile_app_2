@@ -35,7 +35,7 @@ class _DelegationLoginPageState extends State<DelegationLoginPage> {
         child: SizedBox(
           height: 450,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
 
               Text(
@@ -46,6 +46,8 @@ class _DelegationLoginPageState extends State<DelegationLoginPage> {
                   fontSize: 20
                 ),
               ),
+
+              SizedBox(height: 50,),
 
               // Delegation ID Input
               SizedBox(
@@ -81,6 +83,7 @@ class _DelegationLoginPageState extends State<DelegationLoginPage> {
                 ),
               ),
 
+              SizedBox(height: 20,),
               // Password Input
               SizedBox(
                 width: 300,
@@ -114,6 +117,8 @@ class _DelegationLoginPageState extends State<DelegationLoginPage> {
                   ),
                 ),
               ),
+
+              SizedBox(height: 30,),
               
               // Login Button
               ElevatedButton(
